@@ -1,6 +1,15 @@
+resultado = None
+a = "10"
+b = 0
+
 try:
-    10/0
-except Exception as e:
+    resultado = a / b
+except ZeroDivisionError as e:
     print("Ocurrio un error", e)
+    print(type(e))
+except TypeError as e:
+    print("Ocurrio un error", e)
+    print(type(e))
     
-print("continuemos ...")
+print("resultado: ", resultado)
+print("continuamos...")
