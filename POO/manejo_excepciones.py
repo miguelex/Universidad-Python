@@ -16,6 +16,10 @@ except ValueError as e:
 except Exception as e:
     print("Ocurrio un error con Exception", e)
     print(type(e))
+else:
+    print("No hubo ninguna excepcion")
+finally:
+    print("Fin del manejo de excepciones")
     
 print("resultado: ", resultado)
 print("continuamos...")
