@@ -9,7 +9,7 @@ class CatalogoPeliculas:
         try:
             #a es el modo append
             archivo = open(CatalogoPeliculas.ruta_archivo, "a")
-            archivo.write(pelicula)
+            archivo.write(pelicula.__str__())
         except Exception as e:
             print("Ocurrio una excepcion al agregar: ", e)
         finally:
