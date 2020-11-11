@@ -17,5 +17,3 @@ class Teclado(DispositivoEntrada):
             f"Tipo de entrada: {self._tipo_entrada}."
         )
         
-teclado = Teclado ("Logictech", "USB")
-print(teclado)
