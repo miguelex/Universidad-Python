@@ -1,5 +1,3 @@
-#from computadora import Computadora
-
 class Orden():
     
     contador_ordenes = 0
@@ -20,5 +18,5 @@ class Orden():
         
         return (
             f"Orden: {self.__id_orden}, "
-            f"Computadoras: {computadoras_str}, "
+            f"Computadoras: {computadora_str}, "
         )
