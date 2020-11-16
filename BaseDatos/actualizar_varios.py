@@ -19,6 +19,6 @@ cursor.executemany(sentencia, valores)
 conexion.commit()
 
 registros_actualizados = cursor.rowcount
-print(f'Registros insertados: {registros_actualizados}')
+print(f'Registros actualizados: {registros_actualizados}')
 cursor.close()
 conexion.close()
