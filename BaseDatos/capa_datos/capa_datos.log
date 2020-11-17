@@ -1,35 +1,16 @@
-WARNING:root:mensaje nivel warning
-INFO:root:menaje nivel info
-DEBUG:root:menaje nivel debug
-ERROR:root:Ocurrio un error en la base de datos
-DEBUG:root:Se realizo la conexión con éxito
-2020-11-17 11:13:37,681
-2020-11-17 11:13:37,682
-2020-11-17 11:13:37,682
-2020-11-17 11:13:37,683
-2020-11-17 11:13:37,684
-2020-11-17 11:15:36,816: WARNING [logger_base.py]
-2020-11-17 11:15:36,816: INFO [logger_base.py]
-2020-11-17 11:15:36,817: DEBUG [logger_base.py]
-2020-11-17 11:15:36,817: ERROR [logger_base.py]
-2020-11-17 11:15:36,818: DEBUG [logger_base.py]
-2020-11-17 11:16:25,158: WARNING [logger_base.py:11]
-2020-11-17 11:16:25,158: INFO [logger_base.py:12]
-2020-11-17 11:16:25,159: DEBUG [logger_base.py:13]
-2020-11-17 11:16:25,160: ERROR [logger_base.py:14]
-2020-11-17 11:16:25,167: DEBUG [logger_base.py:15]
-2020-11-17 11:17:14,073: WARNING [logger_base.py:11] mensaje nivel warning
-2020-11-17 11:17:14,073: INFO [logger_base.py:12] mensaje nivel info
-2020-11-17 11:17:14,073: DEBUG [logger_base.py:13] mensaje nivel debug
-2020-11-17 11:17:14,074: ERROR [logger_base.py:14] Ocurrio un error en la base de datos
-2020-11-17 11:17:14,074: DEBUG [logger_base.py:15] Se realizo la conexión con éxito
-17/11/2020 11:19:49 AM: WARNING [logger_base.py:12] mensaje nivel warning
-17/11/2020 11:19:49 AM: INFO [logger_base.py:13] mensaje nivel info
-17/11/2020 11:19:49 AM: DEBUG [logger_base.py:14] mensaje nivel debug
-17/11/2020 11:19:49 AM: ERROR [logger_base.py:15] Ocurrio un error en la base de datos
-17/11/2020 11:19:49 AM: DEBUG [logger_base.py:16] Se realizo la conexión con éxito
-17/11/2020 11:24:22 AM: WARNING [logger_base.py:14] mensaje nivel warning
-17/11/2020 11:24:22 AM: INFO [logger_base.py:15] mensaje nivel info
-17/11/2020 11:24:22 AM: DEBUG [logger_base.py:16] mensaje nivel debug
-17/11/2020 11:24:22 AM: ERROR [logger_base.py:17] Ocurrio un error en la base de datos
-17/11/2020 11:24:22 AM: DEBUG [logger_base.py:18] Se realizo la conexión con éxito
+
+17/11/2020 04:28:55 PM: DEBUG [conexion.py:23] Conexion exitosa: <connection object at 0x0334F1F0; dsn: 'user=postgres password=xxx dbname=test_db host=127.0.0.1 port=5432', closed: 0>
+17/11/2020 04:28:55 PM: INFO [conexion.py:32] <connection object at 0x0334F1F0; dsn: 'user=postgres password=xxx dbname=test_db host=127.0.0.1 port=5432', closed: 0>
+17/11/2020 04:33:00 PM: DEBUG [conexion.py:23] Conexion exitosa: <connection object at 0x0307F1F0; dsn: 'user=postgres password=xxx dbname=test_db host=127.0.0.1 port=5432', closed: 0>
+17/11/2020 04:33:00 PM: INFO [conexion.py:45] <connection object at 0x0307F1F0; dsn: 'user=postgres password=xxx dbname=test_db host=127.0.0.1 port=5432', closed: 0>
+17/11/2020 04:33:00 PM: DEBUG [conexion.py:36] Se abrio el cursor con exito: <cursor object at 0x016649A8; closed: 0>
+17/11/2020 04:33:00 PM: INFO [conexion.py:46] <cursor object at 0x016649A8; closed: 0>
+17/11/2020 04:41:52 PM: DEBUG [conexion.py:23] Conexion exitosa: <connection object at 0x03EEF1F0; dsn: 'user=postgres password=xxx dbname=test_db host=127.0.0.1 port=5432', closed: 0>
+17/11/2020 04:41:52 PM: INFO [conexion.py:61] <connection object at 0x03EEF1F0; dsn: 'user=postgres password=xxx dbname=test_db host=127.0.0.1 port=5432', closed: 0>
+17/11/2020 04:41:52 PM: DEBUG [conexion.py:36] Se abrio el cursor con exito: <cursor object at 0x024D69A8; closed: 0>
+17/11/2020 04:41:52 PM: INFO [conexion.py:62] <cursor object at 0x024D69A8; closed: 0>
+17/11/2020 04:42:05 PM: DEBUG [conexion.py:23] Conexion exitosa: <connection object at 0x0331F1F0; dsn: 'user=postgres password=xxx dbname=test_db host=127.0.0.1 port=5432', closed: 0>
+17/11/2020 04:42:05 PM: INFO [conexion.py:61] <connection object at 0x0331F1F0; dsn: 'user=postgres password=xxx dbname=test_db host=127.0.0.1 port=5432', closed: 0>
+17/11/2020 04:42:05 PM: DEBUG [conexion.py:36] Se abrio el cursor con exito: <cursor object at 0x019169A8; closed: 0>
+17/11/2020 04:42:05 PM: INFO [conexion.py:62] <cursor object at 0x019169A8; closed: 0>
+17/11/2020 04:42:05 PM: DEBUG [conexion.py:56] Se han cerrado los objetos de conexion y cursor 
