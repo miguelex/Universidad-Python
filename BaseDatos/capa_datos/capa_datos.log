@@ -14,3 +14,6 @@
 17/11/2020 04:42:05 PM: DEBUG [conexion.py:36] Se abrio el cursor con exito: <cursor object at 0x019169A8; closed: 0>
 17/11/2020 04:42:05 PM: INFO [conexion.py:62] <cursor object at 0x019169A8; closed: 0>
 17/11/2020 04:42:05 PM: DEBUG [conexion.py:56] Se han cerrado los objetos de conexion y cursor 
+17/11/2020 04:54:10 PM: DEBUG [persona.py:20] Id persona: 1Nombre: JuanApellidos: PerezEmail: email
+17/11/2020 04:54:38 PM: DEBUG [persona.py:20] Id persona: 1, Nombre: Juan, Apellidos: Perez, Email: email
+17/11/2020 04:57:06 PM: DEBUG [persona.py:20] Id persona: None, Nombre: Juan, Apellidos: Perez, Email: email
