@@ -8,7 +8,8 @@ class PersonaDao:
        CRUD: Create-Read-Update-Delete entidad Persona
     '''
     
-    __SELECCIONAR = ' SELECT * FROM persona ORDER BY id_persona'
+    __SELECCIONAR = 'SELECT * FROM persona ORDER BY id_persona'
+    __INSERTAR = 'INSERT INTO persona(nombre, apellidos, email) VALUES (%s, %s, %s)'
     
     @classmethod
     def seleccionar (cls):
@@ -20,11 +21,31 @@ class PersonaDao:
         for registro in registros:
             persona = Persona(registro[0], registro[1], registro[3], registro[3])
             personas.append(persona)
+        Conexion.cerrar()
         return personas
     
+    @classmethod
+    def insertar(cls, persona):
+        try:
+            conexion = Conexion.obtenerConexion()
+            cursor = Conexion.obtenerCursor()
+            logger.debug(cursor.mogrify(cls.__INSERTAR))
+            logger.debug(f'Persona a insertar: {persona}')
+            valores = (persona.get_nombre(), persona.get_apellidos(), persona.get_email())
+            cursor.execute(cls.__INSERTAR, valores)
+            conexion.commit()
+            return cursor.rowcount
+        except Exception as e:
+            conexion.rollback()
+            logger.error(f'Excepcion al insertar persona: {e}')
+        finally:
+            Conexion.cerrar()
+        
 if __name__ == '__main__':
-    personas = PersonaDao.seleccionar()
-    for persona in personas:
-        logger.debug(persona)
-        logger.info(persona.get_id_persona())
-    
+    #personas = PersonaDao.seleccionar()
+    #for persona in personas:
+    #    logger.debug(persona)
+    #    logger.info(persona.get_id_persona())
+    persona = Persona (nombre ="Pedro", apellidos="Najera", email ="pnajera@gmail.com")
+    registros_insertados = PersonaDao.insertar(persona)
+    logger.debug(f'Registros insertados: {registros_insertados}')
