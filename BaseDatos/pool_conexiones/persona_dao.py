@@ -15,16 +15,17 @@ class PersonaDao:
     
     @classmethod
     def seleccionar (cls):
-        cursor = Conexion.obtenerCursor()
-        logger.debug(cursor.mogrify(cls.__SELECCIONAR))
-        cursor.execute(cls.__SELECCIONAR)
-        registros = cursor.fetchall()
-        personas = []
-        for registro in registros:
-            persona = Persona(registro[0], registro[1], registro[3], registro[3])
-            personas.append(persona)
-        Conexion.cerrar()
-        return personas
+        with Conexion.obtenerCursor() as cursor:
+            logger.debug(cursor.mogrify(cls.__SELECCIONAR))
+            cursor.execute(cls.__SELECCIONAR)
+            registros = cursor.fetchall()
+            personas = []
+            for registro in registros:
+                persona = Persona(registro[0], registro[1], registro[3], registro[3])
+                personas.append(persona)
+            Conexion.cerrar()
+            return personas
+        
     
     @classmethod
     def insertar(cls, persona):
