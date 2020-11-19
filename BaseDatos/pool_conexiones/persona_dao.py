@@ -1,5 +1,5 @@
 from persona import Persona
-from conexion import Conexion
+from cursor_del_pool import CursorDelPool
 from logger_base import logger
 
 class PersonaDao:
@@ -15,7 +15,7 @@ class PersonaDao:
     
     @classmethod
     def seleccionar (cls):
-        with Conexion.obtenerCursor() as cursor:
+        with CursorDelPool() as cursor:
             logger.debug(cursor.mogrify(cls.__SELECCIONAR))
             cursor.execute(cls.__SELECCIONAR)
             registros = cursor.fetchall()
@@ -23,60 +23,37 @@ class PersonaDao:
             for registro in registros:
                 persona = Persona(registro[0], registro[1], registro[3], registro[3])
                 personas.append(persona)
-            Conexion.cerrar()
             return personas
         
     
     @classmethod
     def insertar(cls, persona):
-        try:
-            conexion = Conexion.obtenerConexion()
-            cursor = Conexion.obtenerCursor()
+        with CursorDelPool() as cursor:
             logger.debug(cursor.mogrify(cls.__INSERTAR))
             logger.debug(f'Persona a insertar: {persona}')
             valores = (persona.get_nombre(), persona.get_apellidos(), persona.get_email())
             cursor.execute(cls.__INSERTAR, valores)
-            conexion.commit()
             return cursor.rowcount
-        except Exception as e:
-            conexion.rollback()
-            logger.error(f'Excepcion al insertar persona: {e}')
-        finally:
-            Conexion.cerrar()
+        
     
     @classmethod
     def actualizar(cls, persona):
-        try:
-            conexion = Conexion.obtenerConexion()
-            cursor = Conexion.obtenerCursor()
+        with CursorDelPool() as cursor:
             logger.debug(cursor.mogrify(cls.__ACTUALIZAR))
             logger.debug(f'Persona a actualizar: {persona}')
             valores = (persona.get_nombre(), persona.get_apellidos(), persona.get_email(), persona.get_id_persona())
             cursor.execute(cls.__ACTUALIZAR, valores)
-            conexion.commit()
             return cursor.rowcount
-        except Exception as e:
-            conexion.rollback()
-            logger.error(f'Excepcion al actualizar persona: {e}')
-        finally:
-            Conexion.cerrar()
-            
+                   
     @classmethod
     def eliminar(cls, persona):
-        try:
-            conexion = Conexion.obtenerConexion()
-            cursor = Conexion.obtenerCursor()
+        with CursorDelPool() as cursor:
             logger.debug(cursor.mogrify(cls.__ELIMINAR))
             logger.debug(f'Persona a eliminar: {persona}')
             valores = (persona.get_id_persona(),)
             cursor.execute(cls.__ELIMINAR, valores)
-            conexion.commit()
             return cursor.rowcount
-        except Exception as e:
-            conexion.rollback()
-            logger.error(f'Excepcion al eliminar persona: {e}')
-        finally:
-            Conexion.cerrar()
+        
         
 if __name__ == '__main__':
     #Seleccioanr registros
@@ -86,16 +63,16 @@ if __name__ == '__main__':
     #    logger.info(persona.get_id_persona())
     
     #Insertar registro
-    #persona = Persona (nombre ="Pedro", apellidos="Najera", email ="pnajera@gmail.com")
+    #persona = Persona (nombre ="Pedro2", apellidos="Najera2", email ="pnajera2@gmail.com")
     #registros_insertados = PersonaDao.insertar(persona)
     #logger.debug(f'Registros insertados: {registros_insertados}')
     
     #Actualziar un registro existente
-    #persona = Persona (2, 'Karla', 'Gomez', 'kgomez@mail.com')
+    #persona = Persona (14, 'Karla', 'Gomez', 'kgomez@mail.com')
     #personas_actualizadas = PersonaDao.actualizar(persona)
     #logger.debug(f'Personas actualizadas: {personas_actualizadas}') 
     
     #Eliminar persona
-    persona =Persona(id_persona=12)
+    persona =Persona(id_persona=14)
     persona_eliminada = PersonaDao.eliminar(persona)
     logger.debug(f'Personas eliminadas: {persona_eliminada}')
