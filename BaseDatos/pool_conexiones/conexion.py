@@ -40,37 +40,29 @@ class Conexion:
         logger.debug(f'Conexion obtenida del pool: {conexion}')
         return conexion
         
-    
     @classmethod
-    def obtenerCursor(cls):
-        if cls.__cursor is None:
-            try:
-                cls.__cursor = cls.obtenerConexion().cursor()
-                logger.debug(f'Se abrio el cursor con exito: {cls.__cursor}')   
-                return cls.__cursor
-            except Exception as e:
-                logger.error(f'Error al obtener el cursor: {e}')
-                sys.exit()
-        else:
-            return cls.__cursor
-     
+    def liberarConexion(cls, conexion):
+        #Regresar el obejto conexion al pool
+        
+        cls.obtenerPool().putconn(conexion)
+        logger.debug(f'Regresamos la conexion al pool:  {conexion}')
+        logger.debug(f'Estado del pool: {cls.__pool}')
+        
     @classmethod
-    def cerrar(cls):
-        if cls.__cursor is not None:
-            try:
-                cls.__cursor.close()
-            except Exception as e:
-                logger.error(f'Error al cerrar el cursor: {e}')
-        if cls.__conexion is not None:
-            try:
-                cls.__conexion.close()
-            except Exception as e:
-                logger.error(f'Error al cerrar la bd: {e}')
-        logger.debug(f'Se han cerrado los objetos de conexion y cursor ')
+    def cerrarConexiones(cls):
+        
+        #Cierra el pool y todas las conexiones
+        cls.obtenerPool().closeall()
+        logger.debug(f'Cerramos rodas las conexiones del pool: {cls.__pool}')
           
              
                 
 if __name__ == '__main__':
-    logger.info(Conexion.obtenerConexion())
-    logger.info(Conexion.obtenerCursor())
-    Conexion.cerrar()
+    #Obtener una conexion a traves del pool
+    conexion1 = Conexion.obtenerConexion()
+    conexion2 = Conexion.obtenerConexion()
+    # Regresamos las conexiones al pool
+    Conexion.liberarConexion(conexion1)
+    Conexion.liberarConexion(conexion2)
+    #Cerramos el pool
+    Conexion.cerrarConexiones()
