@@ -9,9 +9,11 @@ class CursorDelPool:
     
     #inicio de with
     def __enter__(self):
+        logger.debug(f'Inicio de with metodo __enter')
         self.__conn = Conexion.obtenerConexion()
         self.__cursor = self.__conn.cursor()
-        logger.debug(f'Inicio de with metodo __enter:: {self.__conn}')
+        
+        return self.__cursor
         
     #fin del bloque with
     def __exit__(self, exception_type, exception_value, exception_traceback):
@@ -26,3 +28,11 @@ class CursorDelPool:
         self.__cursor.close()    
         #Regresar la conexioon al pool
         Conexion.liberarConexion(self.__conn)
+        
+if __name__ == '__main__':
+    #Obntenemos un cursor a partir de la conexion del pool
+    #width se ejecuta __enter__ y termina con __exit__
+    with CursorDelPool() as cursor:
+        cursor.execute('SELECT * FROM persona')
+        logger.debug('Listado de personas')
+        logger.debug(cursor.fetchall())
