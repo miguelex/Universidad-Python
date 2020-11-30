@@ -2,6 +2,7 @@ from django.forms import modelform_factory
 from django.shortcuts import render, redirect
 
 # Create your views here.
+from personas.forms import PersonaForm
 from personas.models import Persona
 
 
@@ -9,7 +10,7 @@ def detallePersona (request, id):
     persona = Persona.objects.get(pk=id)
     return render(request,'personas/detalle.html',{'persona':persona})
 
-PersonaForm = modelform_factory(Persona, exclude=[])
+#PersonaForm = modelform_factory(Persona, exclude=[])
 
 def nuevaPersona(request):
     if request.method == 'POST':
