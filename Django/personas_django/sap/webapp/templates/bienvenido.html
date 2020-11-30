@@ -12,7 +12,11 @@
     <div>
         <ul>
             {% for persona in personas %}
-                <li>Persona {{ persona.id }}: {{ persona.nombre }} {{ persona.apellido }} {{ persona.email }} </li>
+                <li>Persona {{ persona.id }}:
+                    {{ persona.nombre }}
+                    {{ persona.apellido }}
+                    {{ persona.email }}
+                    <a href="detalle_persona/{{ persona.id }}">Ver detalle</a></li>
             {% endfor %}
         </ul>
     </div>
