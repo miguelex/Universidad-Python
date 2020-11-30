@@ -21,7 +21,7 @@ from webapp.views import bienvenido
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', bienvenido),
+    path('', bienvenido, name='index'),
     path('detalle_persona/<int:id>', detallePersona),
     path('nueva_persona', nuevaPersona),
 ]
