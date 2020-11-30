@@ -5,7 +5,8 @@ from django.shortcuts import render
 
 def bienvenido(request):
     #return HttpResponse('Hola mundo desde Django')
-    return render(request,'bienvenido.html')
+    mensajes ={'msg1': 'Valor mensaje 1', 'msg2': 'Valor mensaje 2'}
+    return render(request,'bienvenido.html', mensajes)
 
 def despedirse(request):
     return HttpResponse('Despedida desde Django')
