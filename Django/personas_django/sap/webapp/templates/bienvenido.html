@@ -21,6 +21,7 @@
             <th>Email</th>
             <th></th>
             <th></th>
+            <th></th>
         </tr>
         </thead>
         <tbody>
@@ -31,6 +32,7 @@
                 <td>{{ persona.email }}</td>
                 <td><a href="detalle_persona/{{ persona.id }}">Ver detalle</a></td>
                 <td><a href="editar_persona/{{ persona.id }}">Editar detalle</a></td>
+                <td><a href="eliminar_persona/{{ persona.id }}">Eliminar</a></td>
             </tr>
 
         {% endfor %}

@@ -8,7 +8,8 @@ from personas.models import Persona
 def bienvenido(request):
     #return HttpResponse('Hola mundo desde Django')
     no_personas = Persona.objects.count()
-    personas = Persona.objects.all()
+    #personas = Persona.objects.all()
+    personas = Persona.objects.order_by('id')#Para ordenar la salida
 
     return render(request,'bienvenido.html', {'no_personas':no_personas, 'personas': personas})
 
