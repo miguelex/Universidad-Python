@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Detalle Domicilio</title>
+</head>
+<body>
+    <h1>Detalle Domicilio</h1>
+    <div>Id Persona: {{ domicilio.id }}</div>
+    <div>Calle: {{ domicilio.calle }}</div>
+    <div>Número calle: {{ domicilio.no_calle }}</div>
+    <div>Pais: {{ domicilio.pais }}</div>
+
+    <a href="{% url 'domicilios' %}">Volver al listado de domicilios</a>
+</body>
+</html>

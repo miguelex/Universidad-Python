@@ -2,8 +2,8 @@ from django.forms import modelform_factory
 from django.shortcuts import render, redirect, get_object_or_404
 
 # Create your views here.
-from personas.forms import PersonaForm
-from personas.models import Persona
+from personas.forms import PersonaForm, DomicilioForm
+from personas.models import Persona, Domicilio
 
 
 def detallePersona (request, id):
@@ -45,3 +45,41 @@ def eliminarPersona(request, id):
     if persona:
         persona.delete()
     return redirect('index')
+
+def detalleDomicilio (request, id):
+    domicilio = get_object_or_404(Domicilio,pk=id)
+    return render(request,'domicilios/detalle.html',{'domicilio':domicilio})
+
+def nuevoDomicilio(request):
+    if request.method == 'POST':
+        formaDomicilio = DomicilioForm(request.POST)
+        #validacion
+        if formaDomicilio.is_valid():
+            formaDomicilio.save() #Insertamos en BD
+            return redirect('domicilios')
+
+    else:
+        formaDomicilio = DomicilioForm()
+
+    return render(request, 'domicilios/nuevo.html', {'formaDomicilio': formaDomicilio})
+
+def editarDomicilio(request, id):
+    domicilio = get_object_or_404(Domicilio, pk=id)
+    if request.method == 'POST':
+        formaDomicilio = DomicilioForm(request.POST, instance=domicilio)
+        #validacion
+        if formaDomicilio.is_valid():
+            formaDomicilio.save() #Insertamos en BD
+            return redirect('domicilios')
+
+    else:
+        formaDomicilio = DomicilioForm(instance = domicilio)
+
+    return render(request, 'domicilios/editar.html', {'formaDomicilio': formaDomicilio})
+
+def eliminarDomicilio(request, id):
+    domicilio = get_object_or_404(Domicilio, pk=id)
+
+    if domicilio:
+        domicilio.delete()
+    return redirect('domicilios')
