@@ -50,14 +50,28 @@ def ver_detalle(id):
 @app.route('/agregar', methods=['GET', 'POST'])
 def agregar():
     persona = Persona()
-    personaForm = PersonaForm(obj=persona)
+    personaForma = PersonaForm(obj=persona)
     if request.method == 'POST':
-        if personaForm.validate_on_submit():
-            personaForm.populate_obj(persona)
+        if personaForma.validate_on_submit():
+            personaForma.populate_obj(persona)
             app.logger.debug(f'Persona a insertar: {persona}')
             #Insertamos el nuevo registro
             db.session.add(persona)
             db.session.commit()
             return redirect(url_for('inicio'))
 
-    return render_template('agregar.html', forma=personaForm)
+    return render_template('agregar.html', forma=personaForma)
+
+@app.route('/editar/<int:id>', methods=['GET','POST'])
+def editar(id):
+    #Recuperamos el objeto persona
+    persona = Persona.query.get_or_404(id)
+    personaForma = PersonaForm(obj=persona)
+    if request.method == 'POST':
+        if personaForma.validate_on_submit():
+            personaForma.populate_obj(persona)
+            app.logger.debug(f'Persona a actualziar: {persona}')
+            db.session.commit()
+            return redirect(url_for('inicio'))
+
+    return render_template('editar.html', forma=personaForma)
