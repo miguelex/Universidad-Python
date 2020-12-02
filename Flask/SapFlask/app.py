@@ -75,3 +75,11 @@ def editar(id):
             return redirect(url_for('inicio'))
 
     return render_template('editar.html', forma=personaForma)
+
+@app.route('/borrar/<int:id>')
+def borrar(id):
+    persona = Persona.query.get_or_404(id)
+    app.logger.debug(f'Persona a eliminar: {persona}')
+    db.session.delete(persona)
+    db.session.commit()
+    return redirect(url_for('inicio'))
