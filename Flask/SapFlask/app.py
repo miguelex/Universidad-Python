@@ -46,3 +46,11 @@ def inicio():
     app.logger.debug(f'Listado Personas: {personas}')
     app.logger.debug(f'Total Personas: {total_personas}')
     return  render_template('index.html', personas = personas, total_personas = total_personas )
+
+@app.route('/ver/<int:id>')
+def ver_detalle(id):
+    #Recuperamos la persona segun el id proporcionado
+    #persona = Persona.query.get(id)
+    persona = Persona.query.get_or_404(id)
+    app.logger.debug(f'Ver persona: {persona}')
+    return render_template('detalle.html', persona = persona)

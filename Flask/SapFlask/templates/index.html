@@ -17,6 +17,7 @@
                     <th>Nombe</th>
                     <th>Apellido</th>
                     <th>Email</th>
+                    <th></th>
                 </tr>
             </thead>
             <tbody>
@@ -26,6 +27,7 @@
                     <td>{{persona.nombre}}</td>
                     <td>{{persona.apellido}}</td>
                     <td>{{persona.email}}</td>
+                    <td><a href="ver/{{persona.id}}">Ver</a></td>
                 </tr>
                 {% endfor %}
             </tbody>
