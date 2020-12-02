@@ -6,7 +6,7 @@ app = Flask(__name__)
 @app.route('/')
 def inicio():
     #app.logger.debug('Mensaje a nivel debug')
-    app.logger.info(f'Entramso al path {request.path}')
+    app.logger.info(f'Entramos al path {request.path}')
     #app.logger.warn('Mensaje a nivel warning')
     #app.logger.error('Mensaje a nivel error')
     return 'Hola mundo desde Flask.'
@@ -18,3 +18,7 @@ def saludar(nombre):
 @app.route('/edad/<int:edad>')
 def mostrar_edad(edad):
     return f'Tu edad es  {edad}'
+
+@app.route('/mostrar/<nombre>', methods=['GET', 'POST'])
+def mostrar_nombre(nombre):
+    return f'Tu nombre es: {nombre}'
