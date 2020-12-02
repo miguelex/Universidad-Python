@@ -1,4 +1,4 @@
-from flask import Flask, request, render_template, url_for
+from flask import Flask, request, render_template, url_for, jsonify
 from werkzeug.exceptions import abort
 from werkzeug.utils import redirect
 
@@ -46,9 +46,10 @@ def pagina_no_encontrada(error):
 
 
 # REST
-@app.route('/api/mostrar/<nombre>')
+@app.route('/api/mostrar/<nombre>', methods=['GET', 'POST'])
 def mostrar_json(nombre):
     valores = {
-        'nombre': nombre
+        'nombre': nombre,
+        'metodo_http': request.method
     }
-    return valores
+    return jsonify(valores)
