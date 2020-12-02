@@ -1,19 +1,36 @@
-from flask import Flask, request, render_template, url_for, jsonify
+from flask import Flask, request, render_template, url_for, jsonify, session
 from werkzeug.exceptions import abort
 from werkzeug.utils import redirect
 
 app = Flask(__name__)
 
+app.secret_key = 'Mi_llave_secreta' #Hay que generarla
 
 # http://localhost:5000/
 @app.route('/')
 def inicio():
-    # app.logger.debug('Mensaje a nivel debug')
-    app.logger.info(f'Entramos al path {request.path}')
-    # app.logger.warn('Mensaje a nivel warning')
-    # app.logger.error('Mensaje a nivel error')
-    return 'Hola mundo desde Flask.'
+    if 'username' in session:
+        return f'El usuario ya ha hecho login {session["username"]}'
+    return 'No ha hecho login'
 
+@app.route('/login', methods=['GET','POST'])
+def login():
+    if request.method == 'POST':
+        #Omitimos calidacion de usuario y password
+        usuario = request.form['username']
+
+        #agregar usuario a la sesion
+        session['username'] = usuario
+        #session['username'] = request.form['username'] Mas rapdio
+
+        return  redirect(url_for('inicio'))
+
+    return render_template('login.html')
+
+@app.route('/logout')
+def logout():
+    session.pop('username')
+    return  redirect(url_for('inicio'))
 
 @app.route('/saludar/<nombre>')
 def saludar(nombre):
